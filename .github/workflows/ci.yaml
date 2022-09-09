@@ -10,17 +10,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    postgres:
-      image: postgres:12
-      env:
-        POSTGRES_DB: simple_bank
-        POSTGRES_USER: secret
-        POSTGRES_PASSWORD: secret
-      options: >-
-        --health-cmd pg_isready
-        --health-interval 10s
-        --health-timeout 5s
-        --health-retries 5
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_DB: simple_bank
+          POSTGRES_USER: secret
+          POSTGRES_PASSWORD: secret
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
 
