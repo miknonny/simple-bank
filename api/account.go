@@ -103,3 +103,38 @@ func (server *Server) listAccounts(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, accounts)
 }
+
+// type deleteAccountRequest struct {
+// 	ID int64 `uri:"id" binding:"required,min=1"`
+// }
+
+// func (server *Server) deleteAccount(ctx *gin.Context) {
+// 	var req deleteAccountRequest
+
+// 	if err := ctx.ShouldBindUri(&req); err != nil {
+// 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+// 	}
+
+// 	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
+
+// 	account, err := server.store.GetAccount(ctx, req.ID)
+// 	if err != nil {
+// 		if err == sql.ErrNoRows {
+// 			ctx.JSON(http.StatusNotFound, errorResponse(err))
+// 			return
+// 		}
+// 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+// 		return
+// 	}
+
+// 	if account.Owner != authPayload.Username {
+// 		err := errors.New("account to be deleted doesn't belong to the authenticated user")
+// 		ctx.JSON(http.StatusUnauthorized, errorResponse(err))
+// 		return
+// 	}
+
+// 	err = server.store.DeleteAccount(ctx, req.ID)
+// 	if err != nil {
+// 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+// 	}
+// }
